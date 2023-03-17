@@ -1,6 +1,7 @@
 current user id : <%= current_user.id %>
 <h2> friends </h2> 
-<% @friendship.each do |friend| %> <hr>
+
+ <% @friendship.each do |friend| %> <hr>
 friendship requester id : <%= friend.requester_id %><br>
 friendship friend id : <%= friend.friend_id %><br>
 friendship user id : <%= friend.user_id %> <br>
