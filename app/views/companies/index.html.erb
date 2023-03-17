@@ -1,0 +1,9 @@
+<!-- < % if user_signed_in? %>  -->
+
+ <% @companies.each do |company| %>
+ <!-- < % byebug %> -->
+  <%= link_to company.company_name , company %><br>
+  <% end %>
+
+  <%= link_to "create new company", new_company_path %>
+<!-- < % end %> -->

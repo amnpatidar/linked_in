@@ -1,0 +1,21 @@
+<p>
+   <strong> <%=link_to comment.user.full_name, users_path %> </strong> <br>
+    <strong>Commenter:</strong>
+    <%= comment.content %>
+    <%= comment.user_name %>
+    <%# byebug %>
+   <%= link_to 'reply', new_post_comment_comment_path(params[:id],[comment.id]) %> 
+  <p>
+      <%=render  comment.comments %>
+  </p>
+
+</p>
+
+
+<!-- <p>
+
+  < %= link_to "delete comment",[comment.article ,comment], data:{
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+  } %>
+</p>  -->

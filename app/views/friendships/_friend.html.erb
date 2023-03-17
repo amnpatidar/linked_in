@@ -1,0 +1,8 @@
+<h1> friend partial </h1>
+<% @users = User.all %>
+<% @users.each do |user| %>
+<%# byebug %>
+	<% if user.id != current_user.id %>
+		<%=link_to user.full_name, user_path(user) %> <br>
+	<% end %>
+<% end %>

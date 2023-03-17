@@ -1,0 +1,17 @@
+<h1> index post</h1>
+<ul>
+<% @posts.each do |post| %>
+	<li> <%= link_to  post.user_name, users_path %> </li>
+	<li> <%= link_to post.article, post %> </li>
+
+	<li>
+		<% if post.image.attached? %>
+			<%=link_to (image_tag post.image,width: 400),post %> 
+		<% end %>
+	</li>
+
+
+<% end %>
+</ul>
+
+<div> <%= button_to "new Post", new_post_path, method: :get %> </div>

@@ -1,0 +1,34 @@
+current user id : <%= current_user.id %>
+<h2> friends </h2> 
+<% @friendship.each do |friend| %> <hr>
+friendship requester id : <%= friend.requester_id %><br>
+friendship friend id : <%= friend.friend_id %><br>
+friendship user id : <%= friend.user_id %> <br>
+	<% user = User.find_by(id: friend.friend_id) %> 
+	<%= user.full_name %> 
+	<%=  friend.status %>
+	<br>
+<% end %> <br> <hr>
+<h2> pending requests </h2>
+<% @request.each do |request| %><hr>
+request requester id : <%= request.requester_id %> <br>
+request friend id : <%= request.friend_id %> <br>
+request user id : <%= request.user_id %> <br>
+	<% user = User.find_by(id: request.friend_id) %> 
+	<%= user.full_name %>
+	<%#= button_to "accept", user_friendship_path(current_user.id, request.friend_id),method: :put %>
+	<%=  request.status %>
+	<br>
+<% end %> <br> <hr>
+
+<h2> recived requests </h2>
+<% @friends = Friendship.where(friend_id: current_user.id) %>
+<%# byebug %>
+<% @friends.each do |accept| %>
+	<% if accept.status == false %>
+		<% user = User.find_by(id: accept.requester_id) %>
+		<%= user.full_name %>
+		<%= button_to "accept", user_friendship_path(current_user.id, accept.id),method: :put %>
+	<% end %>
+<% end %> <br>
+<br> <%= link_to "Add Friends", new_user_friendship_path %>

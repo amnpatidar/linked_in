@@ -1,0 +1,28 @@
+<% if user_signed_in? %> 
+ <div style="color: darkcyan;"> Welcome <%= current_user.full_name %> </div> 
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+<% else %>
+  <%= button_to "Sign in", new_user_session_path %> 
+<% end %>
+
+<div> 
+  <h2> user info </h2>
+  <p style="font-size: large;"> <%= link_to @user.id, @user %><br>
+  <%= link_to @user.full_name, @user %><br> </p>
+</div>
+
+<hr>
+
+<div> 
+  <h3>companies info</h3>
+  <% if @user.user_type == "Company_user" %>
+
+    <% unless @user.companies.nil? %>
+      <% companies = @user.companies.all %> 
+      <% companies.each do |company| %>
+        <%=link_to company.company_name, company_path(company.id) %><br>
+      <% end %>
+    <% end %> <br> <hr>
+    <%= button_to "Create Company", new_company_path, method: :get  %>
+  <% end %>
+</div>

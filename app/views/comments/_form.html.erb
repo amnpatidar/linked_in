@@ -1,0 +1,12 @@
+<%= form_with model: [ @commentable, @commentable.comments.build ] do |form| %>
+  <div>
+    <%= form.label :content %><br>
+    <%= form.text_area :content%>
+
+    
+  </div>
+  
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

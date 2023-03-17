@@ -1,0 +1,20 @@
+<h1> Show User</h1>
+<li>
+	<% if @user.image.persisted? %>
+		profile photo <%= image_tag @user.image,width: 80 %> 
+	<% end %>
+</li>
+<li> user id: <%= @user.id %> </li>
+<li> full name: <%= @user.full_name %> </li>
+<li><%= link_to "Destroy", users_path(@user), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
+
+<li><%#  button_to 'add_friend', create_inverse %></li>
+<%# link_to "add_friend", new_user_friendship_path(@user.id) %>
+<%# byebug %>
+<% unless @user.id == current_user.id %>
+	<%= button_to 'Add Friend', user_friendships_path(user_id: current_user.id,friendship: {friend_id: params[:id], user_id: current_user.id, requester_id: current_user.id}), method: :post%>
+<% end %>
+

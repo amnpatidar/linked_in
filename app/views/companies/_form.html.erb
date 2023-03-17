@@ -1,0 +1,34 @@
+<%= form_with model: company do |form| %>
+  <div>
+    <%= form.label :company_name %>
+    <%= form.text_field :company_name %> <br> <br>
+    <%# company.errors.full_messages_for(:company_name).each do | message | %>
+       <!-- <div style="color: red;">< %=  message  %></div> -->
+    <%# end %>
+
+    <%= form.label :company_type %>
+       <%= form.text_field :company_type %><br> <br>
+
+    <%= form.label :specialities %>
+        <%= form.text_area :specialities %><br> <br>
+
+    <%= form.label :founded_in %>
+        <%= form.select :founded_in, Date.today.year-50 ... Date.today.year %><br> <br>
+
+    <%= form.label :website %>
+        <%= form.text_field :website %> <br> <br>
+
+    <%= form.label :number_of_employee %>
+        <%= form.number_field :company_size %> <br> <br>
+
+    <%= form.label :address %>
+      <%= form.text_field :address %> <br> <br>
+
+    <%= form.label :about %>
+      <%= form.text_area :about %> <br> <br>
+ </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<h1>company details</h1>
+
+<p style="font-size: large;"> <%= "Name : #{@company.company_name}" %> </p>
+<p style="font-size: large;"> <%= "Company Type : #{@company.company_type}" %> </p>
+<p style="font-size: large;"> <%= "Specialitie : #{@company.specialities}" %> </p>
+<p style="font-size: large;"> <%= "Founded in : #{@company.founded_in}" %> </p>
+<p style="font-size: large;"> <%= "Website : #{@company.website}" %> </p>
+<p style="font-size: large;"> <%= "Address : #{@company.address}" %> </p>
+<p style="font-size: large;"> <%= "Adout : #{@company.about}" %> </p>
+
+
+
+<% if @company.user_id == current_user.id %>
+<%# byebug %>
+	 <%#= button_to "Edit", [:edit, @company], method: :get %> <br>
+	<p> <%= button_to "Destroy", company_path(@company),method: :delete %></p>
+<% end %>
+
+<p>
