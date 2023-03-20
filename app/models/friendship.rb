@@ -2,8 +2,8 @@ class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User', foreign_key: 'friend_id'
 
-  scope :friends, -> { where(status: true) }
-  scope :requests, ->(id) { where(status: false) }
+  scope :frend, -> { where(status: true) }
+  scope :requests, ->{ where(status: false) }
   
 
   private

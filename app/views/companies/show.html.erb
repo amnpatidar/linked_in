@@ -10,15 +10,17 @@
 <p style="font-size: large;"> <%= "Adout : #{@company.about}" %> </p>
 
 
-
+<% @follower = CompanyFollower.all.find_by(user_id: current_user.id) %>
 <% if @company.user_id == current_user.id %>
 <%# byebug %>
 	 <%#= button_to "Edit", [:edit, @company], method: :get %> <br>
 	<p> <%= button_to "Destroy", company_path(@company),method: :delete %></p>
 	
-	<p> <%= button_to "add New", new_company_job_path(@company.id),method: :get %></p>
-<% else %>
  	<% byebug %>
+	<p> <%= button_to "add New", new_job_path,method: :get %></p>
+<% elsif CompanyFollower.all.where(user_id: current_user.id).present? %>
+	<p> <%= button_to "Unfollow", company_company_follower_path(@company.id,@follower ),method: :delete %></p>
+<% else %>
 	<p> <%= button_to "Follow", company_company_followers_path(@company.id),method: :post %></p>
 <% end %>
 

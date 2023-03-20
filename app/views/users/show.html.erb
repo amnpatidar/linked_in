@@ -15,6 +15,8 @@
 <%# link_to "add_friend", new_user_friendship_path(@user.id) %>
 <%# byebug %>
 <% unless @user.id == current_user.id %>
-	<%= button_to 'Add Friend', user_friendships_path(user_id: current_user.id,friendship: {friend_id: params[:id], user_id: current_user.id, requester_id: current_user.id}), method: :post%>
+	<% if current_user.id %>
+		<%= button_to 'Add Friend', friendships_path(user_id: current_user.id,friendship: {friend_id: params[:id], user_id: current_user.id, requester_id: current_user.id}), method: :post%>
+	<% end %>
 <% end %>
 

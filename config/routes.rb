@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   root 'users#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users do
-    resources :friendships
     post 'users/:user_id/friendship', to: 'friendships#add_friend'# , :as 'friendship'
   end
+    resources :friendships
   resources :companies do
     resources :company_followers
     # post 'companies/:company_id/company_followers', to: 'company_followers#create'

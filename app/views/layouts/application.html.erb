@@ -28,7 +28,7 @@ y<!DOCTYPE html>
         <li class="nav-item">
           <% if current_user %>
           <%# byebug %>
-            <%= link_to user_friendships_path(current_user.id), class: 'nav-link' do %>
+            <%= link_to friendships_path, class: 'nav-link' do %>
               <img src="assets/network-icon.png" class="avatar float-left" alt='Connection' height="40px" width="40px" /> 
             <% end %>
           <% end %>

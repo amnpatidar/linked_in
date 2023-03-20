@@ -1,5 +1,5 @@
 class CreateFriendships < ActiveRecord::Migration[6.1]
-  def change
+  def up
     create_table :friendships do |t|
       t.references :user, foreign_key: true
       t.boolean :status, default: false
@@ -9,5 +9,9 @@ class CreateFriendships < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+  end
+
+  def down 
+    drop_table :friendships
   end
 end
