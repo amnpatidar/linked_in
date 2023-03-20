@@ -1,7 +1,6 @@
 class FriendshipsController < ApplicationController
   before_action :authenticate_user!
   def index
-  	byebug
   	@friendship = current_user.friendships.friends
   	@request = current_user.friendships.requests(current_user.id)
   end
@@ -16,7 +15,6 @@ class FriendshipsController < ApplicationController
 
 	def create
 		@user = current_user.friendships.new(user_id: current_user.id,friend_id: params[:friendship][:friend_id], requester_id: params[:friendship][:requester_id])
-		# byebug
 		@user.save
 		flash[:notice] = "Added friend."
 		redirect_to user_friendships_path
@@ -26,7 +24,6 @@ class FriendshipsController < ApplicationController
 	end
 
 	def update
-		# byebug
 		friend = Friendship.find_by(id: params[:id])
 		 friend.update(status: true)
 		# @user.status = Friendship.friends

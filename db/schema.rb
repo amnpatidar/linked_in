@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_16_120110) do
+ActiveRecord::Schema.define(version: 2023_03_17_124429) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -93,6 +93,14 @@ ActiveRecord::Schema.define(version: 2023_03_16_120110) do
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
+  create_table "company_followers", force: :cascade do |t|
+    t.integer "company_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_company_followers_on_company_id"
+  end
+
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
     t.boolean "status", default: false
@@ -102,6 +110,17 @@ ActiveRecord::Schema.define(version: 2023_03_16_120110) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string "title"
+    t.string "position"
+    t.string "description"
+    t.string "salary"
+    t.integer "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -135,7 +154,21 @@ ActiveRecord::Schema.define(version: 2023_03_16_120110) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "users_jobs", force: :cascade do |t|
+    t.date "joining_date"
+    t.integer "user_id", null: false
+    t.integer "job_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_id"], name: "index_users_jobs_on_job_id"
+    t.index ["user_id"], name: "index_users_jobs_on_user_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "company_followers", "companies"
   add_foreign_key "friendships", "users"
+  add_foreign_key "jobs", "companies"
+  add_foreign_key "users_jobs", "jobs"
+  add_foreign_key "users_jobs", "users"
 end

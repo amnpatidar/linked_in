@@ -1,0 +1,11 @@
+<h1> Show Job </h1>
+<% @company = Company.find_by(id: @job.company_id) %>
+<p style="font-size: large;"> <%= link_to @company.company_name, company_path(@company.id)  %> </p>
+<%= @job.title %> <br>
+<%= @job.position %> <br>
+<%= @job.description %> <br> <hr>
+ 
+<% unless current_user.companies.ids.include?@job.company_id %>
+<p> apply here </p>
+	
+<% end %>

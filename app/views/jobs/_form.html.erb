@@ -1,0 +1,19 @@
+<%= form_with model: [@company,@company.jobs.build] do |form| %>
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title %> <br> <br>
+
+    <%= form.label :position %>
+       <%= form.text_field :position %><br> <br>
+
+    <%= form.label :salary %>
+        <%= form.number_field :salary %><br> <br>
+
+    <%= form.label :description %>
+        <%= form.text_area :description %> <br> <br>
+ </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -8,7 +8,13 @@ Rails.application.routes.draw do
     resources :friendships
     post 'users/:user_id/friendship', to: 'friendships#add_friend'# , :as 'friendship'
   end
-  resources :companies
+  resources :companies do
+    resources :company_followers
+    # post 'companies/:company_id/company_followers', to: 'company_followers#create'
+    # delete 'companies/:company_id/company_followers/:id', to: 'company_followers#destroy'
+  end
+  resources :jobs
+
   resources :posts do
     resources :comments do
       resources :comments
