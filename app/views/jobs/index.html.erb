@@ -1,0 +1,4 @@
+<h1> all jobs </h1>
+<% @jobs.each do |job| %>
+	<p style="font-size: large;"> <%= link_to job.title,job_path(job.id) %> </p>
+<% end %>

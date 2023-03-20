@@ -1,5 +1,6 @@
 <h1>company details</h1>
 
+
 <p style="font-size: large;"> <%= "Name : #{@company.company_name}" %> </p>
 <p style="font-size: large;"> <%= "Company Type : #{@company.company_type}" %> </p>
 <p style="font-size: large;"> <%= "Specialitie : #{@company.specialities}" %> </p>
@@ -14,6 +15,14 @@
 <%# byebug %>
 	 <%#= button_to "Edit", [:edit, @company], method: :get %> <br>
 	<p> <%= button_to "Destroy", company_path(@company),method: :delete %></p>
+	
+	<p> <%= button_to "add New", new_company_job_path(@company.id),method: :get %></p>
+<% else %>
+ 	<% byebug %>
+	<p> <%= button_to "Follow", company_company_followers_path(@company.id),method: :post %></p>
 <% end %>
 
-<p>
+<% @jobs =  @company.jobs.all %>
+<% @jobs.each do |job| %>
+	<%= link_to job.title,job_path(job.id) %>
+<% end %>
